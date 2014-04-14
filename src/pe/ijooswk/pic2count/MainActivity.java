@@ -188,7 +188,8 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 			TextView textView = (TextView) rootView.findViewById(R.id.section_label);
 			textView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
 			if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
-				viewFlipperPic = new Pick_Details(getActivity());
+				if(viewFlipperPic==null)
+					viewFlipperPic = new Pick_Details(getActivity());
 				return viewFlipperPic;	
 			}
 			return rootView;
