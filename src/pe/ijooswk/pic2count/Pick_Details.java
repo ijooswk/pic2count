@@ -1,10 +1,13 @@
 package pe.ijooswk.pic2count;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,7 @@ public class Pick_Details extends LinearLayout {
 	public static int RESULT_LOAD_IMAGE = 2004;
 	private Activity mActivity;
 	private ImageView imageView;
+	ExifInterface exif;
 	
 	public Pick_Details(Context context) {
 		super(context);
@@ -41,8 +45,14 @@ public class Pick_Details extends LinearLayout {
 	}
 	
 	public void setImage(String picturePath){
-//		imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-		imageView.setImageBitmap(getScaledBitmap(picturePath, 800, 800));
+//		사진의 정보를 저장한다
+		try {
+			exif = new ExifInterface(picturePath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		imageView.setImageBitmap(getScaledBitmap(picturePath, 300, 300));
 	}
 	
 	private Bitmap getScaledBitmap(String picturePath, int width, int height) {
@@ -65,16 +75,8 @@ public class Pick_Details extends LinearLayout {
 	    int inSampleSize = 1;
 
 	    if (height > reqHeight || width > reqWidth) {
-
-	        // Calculate ratios of height and width to requested height and
-	        // width
 	        final int heightRatio = Math.round((float) height / (float) reqHeight);
 	        final int widthRatio = Math.round((float) width / (float) reqWidth);
-
-	        // Choose the smallest ratio as inSampleSize value, this will
-	        // guarantee
-	        // a final image with both dimensions larger than or equal to the
-	        // requested height and width.
 	        inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
 	    }
 
