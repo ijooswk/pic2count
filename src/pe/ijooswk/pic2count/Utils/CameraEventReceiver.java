@@ -30,6 +30,7 @@ public class CameraEventReceiver extends BroadcastReceiver{
 	    Toast.makeText(context, "New Photo is Saved as : -" + image_path, 1000).show();
 	    mContext = context;
 	    
+	    //일단 사진을 찍으면 노티피케이션을 띄운다. 이전것이 떠있으면 지워버려야 하나. 그것은 고민중
 	    iniNotification(image_path);
 	}
 
