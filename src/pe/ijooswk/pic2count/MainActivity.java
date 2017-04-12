@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
 	static Pick_Details viewFlipperPic;
-	
+
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
@@ -78,6 +78,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		//git Test
 	}
 
 	@Override
@@ -190,7 +191,7 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
 			if(getArguments().getInt(ARG_SECTION_NUMBER)==1){
 				if(viewFlipperPic==null)
 					viewFlipperPic = new Pick_Details(getActivity());
-				return viewFlipperPic;	
+				return viewFlipperPic;
 			}
 			return rootView;
 		}
@@ -210,5 +211,5 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             viewFlipperPic.setImage(picturePath);
         }
     }
-	
+
 }
